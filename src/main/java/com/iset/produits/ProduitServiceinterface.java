@@ -14,7 +14,7 @@ Produit getProduit(Long id);
 List<Produit> getAllProduits();
 Page<Produit> getAllProduitsParPage(int page, int size);
 List<Produit> findByNomProduit(String nom);
-List<Produit> findByNomProduitContains(String nom);
+public Page<Produit> findByNomProduitContains(String nom,int page,int size);
 List<Produit> findByNomPrix (String nom, Double prix);
 List<Produit> findByCategorie (Categorie categorie);
 List<Produit> findByCategorieIdCat(Long id);

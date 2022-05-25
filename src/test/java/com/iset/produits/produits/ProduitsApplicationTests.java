@@ -11,6 +11,8 @@ import com.iset.produits.ProduitRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 @SpringBootTest
 class ProduitsApplicationTests {
@@ -65,8 +67,8 @@ public void testFindByNomProduit() {
 
 @Test
 public void testFindByNomProduitContains() {
-    List<Produit> prods =
-        produitRepository.findByNomProduitContains("Asus");
+    Page<Produit> prods =
+    produitRepository.findByNomProduitContaining("Asus",PageRequest.of(1, 1));
         for (Produit p : prods) {System.out.println(p.getNomProduit());}
     }
 

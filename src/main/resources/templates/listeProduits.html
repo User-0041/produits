@@ -9,7 +9,14 @@ href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
 <title>Liste des Produits</title>
 </head>
 <body layout:fragment="content">
-<div class="container">
+      <div class="container">
+
+<form th:action="@{search}" method="get">
+<input type="text" name="Keyword" placeholder="Sertch"  th:value="${word}"/> 
+<button class="btn btn btn-primary small">Look for it</button>
+</form>
+
+
 <div class="card">
 <div class="card-header">
 Liste des Produits

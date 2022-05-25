@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 @Service
@@ -45,6 +46,7 @@ return produitRepository.findAll();
 
 public Page<Produit> getAllProduitsParPage(int page, int size) {
     return produitRepository.findAll(PageRequest.of(page, size));
+    
     }
 @Override
 public List<Produit> findByNomProduit(String nom) {
@@ -52,8 +54,9 @@ public List<Produit> findByNomProduit(String nom) {
    
 }
 @Override
-public List<Produit> findByNomProduitContains(String nom) {
-    return produitRepository.findByNomProduitContains(nom);
+public Page<Produit> findByNomProduitContains(String nom,int page,int size) {
+    return produitRepository.findByNomProduitContaining(nom,PageRequest.of(page, size));
+
 }
 @Override
 public List<Produit> findByNomPrix(String nom, Double prix) {

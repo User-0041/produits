@@ -32,6 +32,20 @@ public class CatController {
     return "createProduit";
     }
 
+    @GetMapping("/search")
+    public String search(ModelMap modelMap,@RequestParam(name = "page", defaultValue = "0") int page,@RequestParam(name = "size", defaultValue = "10") int size,@RequestParam(name ="Keyword" ,defaultValue="") String Keyword ) {
+        Page<Produit> prods = produitService.findByNomProduitContains(Keyword,page, size);
+        modelMap.addAttribute("produits", prods);   
+        modelMap.addAttribute("pages", new int[prods.getTotalPages()]);
+        modelMap.addAttribute("currentPage", page);
+
+
+        modelMap.addAttribute("word", Keyword);
+
+        System.out.println(modelMap);
+    return "listeProduits";    
+    };
+
 @RequestMapping("/saveProduit")
 public String saveProduit(@Valid Produit produit,BindingResult bindingResult,ModelMap modelMap) throws ParseException
 {
@@ -94,9 +108,9 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 Date dateCreation = dateformat.parse(String.valueOf(date));
 produit.setDateCreation(dateCreation);
 produitService.updateProduit(produit);
-List<Produit> prods = produitService.getAllProduits();
-modelMap.addAttribute("produits", prods);
-return "listeProduits";
+
+modelMap.addAttribute("produit", produit);
+return "editerProduit";
 }
 
 

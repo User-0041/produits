@@ -11,7 +11,7 @@ href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
 <body layout:fragment="content">
 <div class="container">
 <div class="card-body">
-<form action="saveProduit" method="post">
+<form action="updateProduit" method="post">
 <div class="form-group">
 <label class="control-label">Nom Produit :</label>
 <input type="text" name="nomProduit" class="form-control" th:value="${produit.nomProduit}"/>
@@ -20,6 +20,8 @@ href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
 <label class="control-label">Prix Produit :</label>
 <input type="text" name="prixProduit" class="form-control" th:value="${produit.prixProduit}"/>
 </div>
+<input type="hidden" name="id" th:value="${produit.idProduit}">
+
 <div class="form-group">
 <label class="control-label">date création :</label>
 <input type="date" name="date" class="form-control" th:value="${produit.dateCreation}" />
